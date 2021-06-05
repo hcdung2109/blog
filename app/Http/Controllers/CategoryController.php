@@ -15,9 +15,13 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $listCategories = Category::all(); // lấy toàn bộ dữ liệu
+        $categories = Category::all(); // lấy toàn bộ dữ liệu
+        $listCategories = Category::latest()->paginate(15); // sắp sếp theo thứ tự mới nhất && phân trang
 
-        return view('admin.category.index',['data' => $listCategories]);
+        return view('admin.category.index',[
+            'data' => $listCategories,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -27,7 +31,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        $categories = Category::all(); // lấy toàn bộ dữ liệu
+
+        return view('admin.category.create',[
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -100,7 +108,13 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        $categories = Category::all(); // lấy toàn bộ dữ liệu
+
+        return view('admin.category.edit',[
+            'category' => $category,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -112,7 +126,46 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // validate dữ liệu
+
+
+        // bước 1 : nhận được data từ request
+        //$name = $_POST['name'];
+        $parent_id = $request->input('parent_id'); // lấy dữ liệu từ form
+        $name = $request->input('name'); // tên
+        $position = $request->input('position'); // vị trị
+        $type = $request->input('type'); // loại danh mục
+        $is_active = $request->input('is_active'); // hiển thị
+
+        // bươc 2:
+        $category = Category::find($id); // tên bảng =>  class
+        $category->parent_id = $parent_id; // tên cột => thuộc tính của Class
+        $category->name = $name;
+        $category->slug = str_slug($name);
+        $category->position = $position;
+        $category->type = $type;
+        $category->is_active = $is_active ? $is_active : 0;
+
+        // xử lý lưu ảnh
+        if ($request->hasFile('image')) { // dòng này Kiểm tra xem có image có được chọn
+            // get file
+            $file = $request->file('image');
+            // tên file image
+            $filename = $file->getClientOriginalName(); // tên ban đầu của image
+            // Định nghĩa đường dẫn sẽ upload lên
+            $path_upload = 'uploads/category/'; // uploads/brand ; uploads/vendor
+            // Thực hiện upload file
+            $file->move($path_upload,$filename);
+
+            $category->image = $path_upload.$filename;
+        }
+
+        $category->save();
+
+        // bước 3 : chuyển về trang danh sách
+        // header('Location: http://mvc.local:8888/?method=danhsach&controller=user');
+
+        return redirect()->route('category.index');
     }
 
     /**

@@ -19,38 +19,57 @@
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Tên</th>
-                                <th>Danh Mục Cha</th>
-                                <th>Hình ảnh</th>
-                                <th>Vị trí</th>
-                                <th>Loại</th>
-                                <th>Hiện thị</th>
+                                <th >Danh Mục Cha</th>
+                                <th class="text-center">Hình ảnh</th>
+                                <th class="text-center">Vị trí</th>
+                                <th class="text-center">Loại Danh Mục</th>
+                                <th class="text-center">Trạng thái</th>
+                                <th class="text-center">Hành động</th>
                             </tr>
                             @foreach($data as $index => $item)
                                 <tr>
                                     <td>{{ $index }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->parent_id }}</td>
                                     <td>
+                                        @foreach($categories as $cate)
+                                            @if($item->parent_id === $cate->id)
+                                                {{ $cate->name }}
+                                            @endif
+                                        @endforeach
+                                    </td>
+                                    <td class="text-center">
                                         @if($item->image)
                                             <img width="100" src="{{ asset($item->image) }}">
                                         @endif
                                     </td>
-                                    <td>{{ $item->position }}</td>
-                                    <td>{{ $item->type }}</td>
-                                    <td>{{ $item->is_active }}</td>
+                                    <td class="text-center">{{ $item->position }}</td>
+                                    <td class="text-center">
+                                        @if($item->type == 1)
+                                            Sản phẩm
+                                        @elseif($item->type == 2)
+                                            Tin tức
+                                        @else
+                                            Khác
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        {!! ($item->is_active == 1) ? '<span class="badge bg-green"> hiển thị </span>' : '<span class="badge bg-red">ẩn</span>'  !!}
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="{{ route('category.edit', ['id' => $item->id]) }}" class="btn btn-primary">
+                                            <i class="fa fa-fw fa-pencil"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa fa-fw fa-remove"></i>
+                                        </button>
+                                    </td>
                                 </tr>
                             @endforeach
                         </table>
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
-                        <ul class="pagination pagination-sm no-margin pull-right">
-                            <li><a href="#">&laquo;</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">&raquo;</a></li>
-                        </ul>
+                        {{ $data->links() }}
                     </div>
                 </div>
                 <!-- /.box -->
