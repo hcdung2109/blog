@@ -35,4 +35,5 @@ Route::get('/dat-hang', 'CartController@index');
 //giúp cho chúng ta tạo các url  tương ứng với controller truyền vào
 Route::resource('category', 'CategoryController');
 Route::resource('banner', 'BannerController');
+Route::resource('product', 'ProductController');
 

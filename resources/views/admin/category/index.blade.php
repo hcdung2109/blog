@@ -59,7 +59,7 @@
                                         <a href="{{ route('category.edit', ['id' => $item->id]) }}" class="btn btn-primary">
                                             <i class="fa fa-fw fa-pencil"></i>
                                         </a>
-                                        <button type="button" class="btn btn-danger">
+                                        <button type="button" class="btn btn-danger btnDelete" data-id="{{ $item->id }}">
                                             <i class="fa fa-fw fa-remove"></i>
                                         </button>
                                     </td>
@@ -80,4 +80,38 @@
 
     </section>
     <!-- /.content -->
+@endsection
+
+@section('my_js')
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            // đính kèm token vào mỗi request ajax
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // suAbidEneUPjfI5mHvWdFbSQ1PsM4OYSm73vF7kZ
+                }
+            });
+
+            $('.btnDelete').click(function () {
+                var id = $(this).attr('data-id'); // lấy thuộc tính của thẻ HTML
+                var me = this;
+
+                var result = confirm("Bạn có chắc chắn muốn xóa ?");
+                if (result == true) { // neu nhấn == ok , sẽ send request ajax
+                    $.ajax({
+                        url: '/category/'+id,
+                        type: 'DELETE', // method
+                        data: {}, // dữ liệu truyền sang nếu có
+                        dataType: "json", // kiểu dữ liệu nhận về
+                        success: function (res) { // success : kết quả trả về sau khi gửi request ajax
+                            if (res.status == true) {
+                                $(me).closest('tr').remove();
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endsection

@@ -64,7 +64,7 @@ class CategoryController extends Controller
         $category->slug = str_slug($name);
         $category->position = $position;
         $category->type = $type;
-        $category->is_active = $is_active;
+        $category->is_active = $is_active ? $is_active : 0;
 
         // xử lý lưu ảnh
         if ($request->hasFile('image')) { // dòng này Kiểm tra xem có image có được chọn
@@ -169,6 +169,7 @@ class CategoryController extends Controller
     }
 
     /**
+     *  Xóa
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -176,6 +177,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::destroy($id); // DELETE FROM categories WHERE id = 56
+
+        return response()->json(['status' => true], 200);
     }
 }
