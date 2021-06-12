@@ -26,12 +26,12 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-                <a href="{{ route('category.index') }}">
+                <a href="{{ route('admin.category.index') }}">
                     <i class="fa fa-th"></i> <span>QL Danh Mục</span>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="{{ route('admin.product.index') }}">
                     <i class="fa fa-th"></i> <span>QL Sản Phẩm</span>
                 </a>
             </li>

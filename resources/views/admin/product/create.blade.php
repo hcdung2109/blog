@@ -4,14 +4,28 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Thêm Sản Phẩm <a href="{{ route('product.index') }}" class="btn btn-primary">Danh Sách</a>
+            Thêm Sản Phẩm <a href="{{ route('admin.product.index') }}" class="btn btn-primary">Danh Sách</a>
         </h1>
     </section>
 
     <section class="content">
         <div class="row">
+
+            <div class="col-md-12">
+                @if ($errors->any()) <!-- kiểm tra có bất kỳ lỗi nào -->
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-ban"></i> Lỗi !</h4>
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+
+
             <!-- left column -->
-            <form role="form" action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
+            <form role="form" action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="col-md-9 col-lg-9">
                     <div class="box box-primary">
@@ -21,6 +35,7 @@
                         <!-- /.box-header -->
                         <!-- form start -->
                             <div class="box-body">
+
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên sản phẩm</label>
                                     <input type="text" class="form-control" id="name" name="name">
@@ -116,11 +131,11 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Meta Title</label>
-                        <input type="text" class="form-control" id="meta_title" name="meta_title" >
+                        <textarea name="meta_title" class="form-control" rows="3" ></textarea>
                     </div>
                     <div class="form-group">
                         <label>Meta Description</label>
-                        <textarea name="meta_description" class="form-control" rows="3" ></textarea>
+                        <textarea name="meta_description" class="form-control" rows="5" ></textarea>
                     </div>
                 </div>
             </form>

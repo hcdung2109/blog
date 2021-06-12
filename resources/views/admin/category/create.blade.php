@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Thêm Danh Mục <a href="{{ route('category.index') }}" class="btn btn-primary">Danh Sách</a>
+            Thêm Danh Mục <a href="{{ route('admin.category.index') }}" class="btn btn-primary">Danh Sách</a>
         </h1>
     </section>
 
@@ -21,7 +21,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form"  method="POST" action="{{ route('category.store') }}" enctype="multipart/form-data">
+                    <form role="form"  method="POST" action="{{ route('admin.category.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">
                             <div class="form-group">

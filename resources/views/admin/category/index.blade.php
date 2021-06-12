@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            QL Danh Mục <a href="{{ route('category.create') }}" class="btn btn-primary">Thêm</a>
+            QL Danh Mục <a href="{{ route('admin.category.create') }}" class="btn btn-primary">Thêm</a>
         </h1>
     </section>
 
@@ -56,7 +56,7 @@
                                         {!! ($item->is_active == 1) ? '<span class="badge bg-green"> hiển thị </span>' : '<span class="badge bg-red">ẩn</span>'  !!}
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('category.edit', ['id' => $item->id]) }}" class="btn btn-primary">
+                                        <a href="{{ route('admin.category.edit', ['id' => $item->id]) }}" class="btn btn-primary">
                                             <i class="fa fa-fw fa-pencil"></i>
                                         </a>
                                         <button type="button" class="btn btn-danger btnDelete" data-id="{{ $item->id }}">

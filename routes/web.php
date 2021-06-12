@@ -31,9 +31,12 @@ Route::get('/chi-tiet-tin-tuc', 'ShopController@detailArticle');
 
 Route::get('/dat-hang', 'CartController@index');
 
+// Gom nhóm route của trang admin thông qua hàm group
+Route::group(['prefix' => 'admin','as' => 'admin.'], function() {
+    //giúp cho chúng ta tạo các url  tương ứng với controller truyền vào
+    Route::resource('category', 'CategoryController');
+    Route::resource('banner', 'BannerController');
+    Route::resource('product', 'ProductController');
+});
 
-//giúp cho chúng ta tạo các url  tương ứng với controller truyền vào
-Route::resource('category', 'CategoryController');
-Route::resource('banner', 'BannerController');
-Route::resource('product', 'ProductController');
 
