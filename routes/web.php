@@ -31,12 +31,19 @@ Route::get('/chi-tiet-tin-tuc', 'ShopController@detailArticle');
 
 Route::get('/dat-hang', 'CartController@index');
 
+
+Route::get('/admin/login', 'LoginController@index')->name('admin.login');
+Route::post('/admin/postLogin', 'LoginController@postLogin')->name('admin.postLogin');
+Route::get('/admin/logout', 'LoginController@logout')->name('admin.logout');
+
 // Gom nhóm route của trang admin thông qua hàm group
-Route::group(['prefix' => 'admin','as' => 'admin.'], function() {
+Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => 'checkLogin'], function() {
     //giúp cho chúng ta tạo các url  tương ứng với controller truyền vào
     Route::resource('category', 'CategoryController');
     Route::resource('banner', 'BannerController');
     Route::resource('product', 'ProductController');
+    Route::resource('user', 'UserController');
+    Route::resource('setting', 'SettingController');
 });
 
 

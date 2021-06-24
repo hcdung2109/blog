@@ -36,11 +36,21 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('admin.user.index') }}">
+                    <i class="fa fa-th"></i> <span>QL Người Dùng</span>
+                </a>
+            </li>
+            <li>
                 <a href="">
                     <i class="fa fa-th"></i> <span>QL Nhà Cung Cấp</span>
                 </a>
             </li>
 
+            <li>
+                <a href="">
+                    <i class="fa fa-th"></i> <span>Cấu Hình Website</span>
+                </a>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->
