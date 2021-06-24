@@ -266,22 +266,22 @@
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 hidden-sm">
                                 <!-- STATICBLOCK START -->
                                 <div class="staticblock">
-                                    <h2>static block</h2>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s<br />when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                                    <h2>Giới Thiệu</h2>
+                                    <p>{{ $settings->summary }}</p>
                                 </div>
                                 <!-- STATICBLOCK END -->
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <!-- STORE-INFORMATION START -->
                                 <div class="Store-Information">
-                                    <h2>Store Information</h2>
+                                    <h2>Thông Tin Công Ty</h2>
                                     <ul>
                                         <li>
                                             <div class="info-lefticon">
                                                 <i class="fa fa-map-marker"></i>
                                             </div>
                                             <div class="info-text">
-                                                <p>My Company, 42 avenue des Champs Elysées 75000 Paris France </p>
+                                                <p>{{ $settings->address }}</p>
                                             </div>
                                         </li>
                                         <li>
@@ -289,7 +289,7 @@
                                                 <i class="fa fa-phone"></i>
                                             </div>
                                             <div class="info-text call-lh">
-                                                <p>Call us now : 0123-456-789</p>
+                                                <p>{{ $settings->hotline }}</p>
                                             </div>
                                         </li>
                                         <li>
@@ -297,7 +297,7 @@
                                                 <i class="fa fa-envelope-o"></i>
                                             </div>
                                             <div class="info-text">
-                                                <p>Email : <a href="mailto:sales@yourcompany.com"><i class="fa fa-angle-double-right"></i> sales@yourcompany.com</a></p>
+                                                <p>Email : <a href="mailto:sales@yourcompany.com"><i class="fa fa-angle-double-right"></i>{{ $settings->email }}</a></p>
                                             </div>
                                         </li>
                                     </ul>

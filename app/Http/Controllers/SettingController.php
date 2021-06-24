@@ -28,6 +28,7 @@ class SettingController extends Controller
         $setting->facebook = $request->input('facebook');
         $setting->email = $request->input('email');
         $setting->introduce = $request->input('introduce');
+        $setting->summary = $request->input('summary');
 
         if ($request->hasFile('image')) {
             // xóa file cũ

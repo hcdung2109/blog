@@ -2,10 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Setting;
+use App\Contact;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
+    public function __construct()
+    {
+        // lấy dữ liệu setting và chia sẻ global
+        // 4. cấu hình website
+        $settings = Setting::first();
+
+        // Chia sẻ dữ qua tất các layout
+        view()->share([
+            'settings' => $settings
+        ]);
+    }
+
     // trang chủ
     public function index()
     {
@@ -40,5 +54,26 @@ class ShopController extends Controller
     public function detailArticle()
     {
         return view('shop.detail-article');
+    }
+
+    // thêm dữ liệu khách hàng liên hệ vào bảng contact
+    public function postContact(Request $request)
+    {
+        //validate
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email'
+        ]);
+
+        //luu vào csdl
+        $contact = new Contact();
+        $contact->name = $request->input('name');
+        $contact->phone = $request->input('phone');
+        $contact->email = $request->input('email');
+        $contact->content = $request->input('content');
+        $contact->save();
+
+        // chuyển về trang chủ
+        return redirect('/');
     }
 }

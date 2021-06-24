@@ -80,8 +80,8 @@
                 <!-- LOGO END -->
                 <!-- HEADER-RIGHT-CALLUS START -->
                 <div class="header-right-callus">
-                    <h3>call us free</h3>
-                    <span>0123-456-789</span>
+                    <h3>Hotline</h3>
+                    <span>{{ $settings->hotline }}</span>
                 </div>
                 <!-- HEADER-RIGHT-CALLUS END -->
                 <!-- CATEGORYS-PRODUCT-SEARCH START -->
@@ -191,7 +191,7 @@
                 <div class="mainmenu">
                     <nav>
                         <ul class="list-inline mega-menu">
-                            <li class="active"><a href="index.html">Home</a>
+                            <li class="active"><a href="index.html">Trang Chủ</a>
                                 <!-- DROPDOWN MENU START -->
                                 <div class="home-var-menu">
                                     <ul class="home-menu">
@@ -391,7 +391,7 @@
                                 <!-- DRODOWN-MEGA-MENU END -->
                             </li>
                             <li><a href="#">Delivery</a></li>
-                            <li><a href="about-us.html">About us</a></li>
+                            <li><a href="/lien-he">Liên hệ</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -405,7 +405,7 @@
                     <span class="mobile-menu-title">MENU</span>
                     <nav>
                         <ul>
-                            <li><a href="index.html">Home</a>
+                            <li><a href="/">Trang Chủ</a>
                                 <ul>
                                     <li><a href="index.html">Home variation 1</a></li>
                                     <li><a href="index-2.html">Home variation 2</a></li>

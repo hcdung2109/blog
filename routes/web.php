@@ -16,6 +16,7 @@ Route::get('/', 'ShopController@index');
 
 // Trang liên hệ
 Route::get('/lien-he', 'ShopController@contact');
+Route::post('/postContact', 'ShopController@postContact')->name('shop.postContact');
 
 // Trang danh mục
 Route::get('/danh-muc-san-pham', 'ShopController@listProducts');

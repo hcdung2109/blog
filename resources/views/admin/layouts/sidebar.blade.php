@@ -47,7 +47,7 @@
             </li>
 
             <li>
-                <a href="">
+                <a href="{{ route('admin.setting.index') }}">
                     <i class="fa fa-th"></i> <span>Cấu Hình Website</span>
                 </a>
             </li>

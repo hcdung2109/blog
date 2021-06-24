@@ -72,6 +72,10 @@
                                 <input value="{{ $setting->introduce }}" type="text" class="form-control" id="introduce"
                                        name="introduce" placeholder="">
                             </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mô tả ngắn giới thiệu Company</label>
+                                <textarea class="form-control" name="summary">{{ $setting->summary }}</textarea>
+                            </div>
                         </div>
                         <!-- /.box-body -->
 
