@@ -1,161 +1,41 @@
 @extends('shop.layouts.main')
 
 @section('content')
-    <!-- LATEST-NEWS-AREA START -->
-    <section class="latest-news-area">
-        <div class="container">
-            <div class="row">
-                <div class="latest-news-row">
-                    <div class="center-title-area">
-                        <h2 class="center-title"><a href="#">latest news</a></h2>
-                    </div>
-                    <div class="col-xs-12">
-                        <div class="row">
-                            <!-- LATEST-NEWS-CAROUSEL START -->
-                            <div class="latest-news-carousel">
-                                <!-- LATEST-NEWS-SINGLE-POST START -->
-                                <div class="item">
-                                    <div class="latest-news-post">
-                                        <div class="single-latest-post">
-                                            <a href="#"><img src="/frontend/img/latest-news/1.jpg" alt="latest-post" /></a>
-                                            <h2><a href="#">What is Lorem Ipsum?</a></h2>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and Type setting industry. Lorem Ipsum has been...</p>
-                                            <div class="latest-post-info">
-                                                <i class="fa fa-calendar"></i><span>2015-06-20 04:51:43</span>
-                                            </div>
-                                            <div class="read-more">
-                                                <a href="#">Read More <i class="fa fa-long-arrow-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- LATEST-NEWS-SINGLE-POST END -->
-                                <!-- LATEST-NEWS-SINGLE-POST START -->
-                                <div class="item">
-                                    <div class="latest-news-post">
-                                        <div class="single-latest-post">
-                                            <a href="#"><img src="/frontend/img/latest-news/2.jpg" alt="latest-post" /></a>
-                                            <h2><a href="#">Share the Love for printing</a></h2>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and Type setting industry. Lorem Ipsum has been...</p>
-                                            <div class="latest-post-info">
-                                                <i class="fa fa-calendar"></i><span>2015-06-20 04:51:43</span>
-                                            </div>
-                                            <div class="read-more">
-                                                <a href="#">Read More <i class="fa fa-long-arrow-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- LATEST-NEWS-SINGLE-POST END -->
-                                <!-- LATEST-NEWS-SINGLE-POST START -->
-                                <div class="item">
-                                    <div class="latest-news-post">
-                                        <div class="single-latest-post">
-                                            <a href="#"><img src="/frontend/img/latest-news/3.jpg" alt="latest-post" /></a>
-                                            <h2><a href="#">Answers your Questions P..</a></h2>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and Type setting industry. Lorem Ipsum has been...</p>
-                                            <div class="latest-post-info">
-                                                <i class="fa fa-calendar"></i><span>2015-06-20 04:51:43</span>
-                                            </div>
-                                            <div class="read-more">
-                                                <a href="#">Read More <i class="fa fa-long-arrow-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- LATEST-NEWS-SINGLE-POST END -->
-                                <!-- LATEST-NEWS-SINGLE-POST START -->
-                                <div class="item">
-                                    <div class="latest-news-post">
-                                        <div class="single-latest-post">
-                                            <a href="#"><img src="/frontend/img/latest-news/4.jpg" alt="latest-post" /></a>
-                                            <h2><a href="#">What is Bootstrap? – History</a></h2>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and Type setting industry. Lorem Ipsum has been...</p>
-                                            <div class="latest-post-info">
-                                                <i class="fa fa-calendar"></i><span>2015-06-20 04:51:43</span>
-                                            </div>
-                                            <div class="read-more">
-                                                <a href="#">Read More <i class="fa fa-long-arrow-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- LATEST-NEWS-SINGLE-POST END -->
-                                <!-- LATEST-NEWS-SINGLE-POST START -->
-                                <div class="item">
-                                    <div class="latest-news-post">
-                                        <div class="single-latest-post">
-                                            <a href="#"><img src="/frontend/img/latest-news/5.jpg" alt="latest-post" /></a>
-                                            <h2><a href="#">Share the Love for..</a></h2>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and Type setting industry. Lorem Ipsum has been...</p>
-                                            <div class="latest-post-info">
-                                                <i class="fa fa-calendar"></i><span>2015-06-20 04:51:43</span>
-                                            </div>
-                                            <div class="read-more">
-                                                <a href="#">Read More <i class="fa fa-long-arrow-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- LATEST-NEWS-SINGLE-POST END -->
-                                <!-- LATEST-NEWS-SINGLE-POST START -->
-                                <div class="item">
-                                    <div class="latest-news-post">
-                                        <div class="single-latest-post">
-                                            <a href="#"><img src="/frontend/img/latest-news/6.jpg" alt="latest-post" /></a>
-                                            <h2><a href="#">What is Bootstrap? – The History a..</a></h2>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and Type setting industry. Lorem Ipsum has been...</p>
-                                            <div class="latest-post-info">
-                                                <i class="fa fa-calendar"></i><span>2015-06-20 04:51:43</span>
-                                            </div>
-                                            <div class="read-more">
-                                                <a href="#">Read More <i class="fa fa-long-arrow-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- LATEST-NEWS-SINGLE-POST END -->
-                                <!-- LATEST-NEWS-SINGLE-POST START -->
-                                <div class="item">
-                                    <div class="latest-news-post">
-                                        <div class="single-latest-post">
-                                            <a href="#"><img src="/frontend/img/latest-news/3.jpg" alt="latest-post" /></a>
-                                            <h2><a href="#">Answers your Questions P..</a></h2>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and Type setting industry. Lorem Ipsum has been...</p>
-                                            <div class="latest-post-info">
-                                                <i class="fa fa-calendar"></i><span>2015-06-20 04:51:43</span>
-                                            </div>
-                                            <div class="read-more">
-                                                <a href="#">Read More <i class="fa fa-long-arrow-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- LATEST-NEWS-SINGLE-POST END -->
-                                <!-- LATEST-NEWS-SINGLE-POST START -->
-                                <div class="item">
-                                    <div class="latest-news-post">
-                                        <div class="single-latest-post">
-                                            <a href="#"><img src="/frontend/img/latest-news/4.jpg" alt="latest-post" /></a>
-                                            <h2><a href="#">What is Bootstrap? – History</a></h2>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and Type setting industry. Lorem Ipsum has been...</p>
-                                            <div class="latest-post-info">
-                                                <i class="fa fa-calendar"></i><span>2015-06-20 04:51:43</span>
-                                            </div>
-                                            <div class="read-more">
-                                                <a href="#">Read More <i class="fa fa-long-arrow-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- LATEST-NEWS-SINGLE-POST END -->
-                            </div>
-                            <!-- LATEST-NEWS-CAROUSEL START -->
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <style>
+
+    </style>
+    <br>
+    @foreach($articles as $article)
+        <div class="well">
+    <div class="media">
+        <a class="pull-left" href="{{ route('shop.detailArticle', ['slug' => $article->slug]) }}">
+            <img width="150" class="media-object" src="{{ asset($article->image) }}">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading"><a href="{{ route('shop.detailArticle', ['slug' => $article->slug]) }}">{{ $article->title }}</a></h4>
+            {!! $article->summary !!}
+            <ul class="list-inline list-unstyled">
+                <li><span><i class="glyphicon glyphicon-calendar"></i>{{ $article->updated_at }}</span></li>
+                <li>|</li>
+                <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+                <li>|</li>
+                <li>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </li>
+                <li>|</li>
+                <li>
+                    <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
+                    <span><i class="fa fa-facebook-square"></i></span>
+                    <span><i class="fa fa-twitter-square"></i></span>
+                    <span><i class="fa fa-google-plus-square"></i></span>
+                </li>
+            </ul>
         </div>
-    </section>
-    <!-- LATEST-NEWS-AREA END -->
+    </div>
+</div>
+    @endforeach
 @endsection

@@ -86,6 +86,21 @@
     <!-- MODERNIZR JS
 		============================================ -->
     <script src="/frontend/js/vendor/modernizr-2.6.2.min.js"></script>
+
+    <style>
+
+        .single-product-item {
+            position: relative;
+            height: 310px;
+        }
+
+        .price-box {
+            position: absolute;
+            text-align: center;
+            margin: 0px auto;
+            bottom: 5px;
+        }
+    </style>
 </head>
 <body>
 @include('shop.layouts.header')

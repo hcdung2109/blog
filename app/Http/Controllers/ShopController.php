@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use App\Banner;
 use App\Setting;
 use App\Contact;
@@ -90,27 +91,78 @@ class ShopController extends Controller
     }
 
     // Trang danh sách sản phẩm
-    public function listProducts()
+    public function listProducts($slug)
     {
-        return view('shop.list-products');
+        $category = Category::where(['slug' => $slug, 'is_active' => 1])->firstOrFail();
+
+        $ids = []; // chưa cả id cha và con
+        $ids[] = $category->id;
+
+        $listCategories = $this->categories; // lấy toàn bộ danh mục
+        foreach ($listCategories as $child) {
+            if ($child->parent_id == $category->id) {
+                $ids[] = $child->id;
+
+                foreach ($listCategories as $child2) {
+                    if ($child2->parent_id == $child->id) {
+                        $ids[] = $child2->id;
+                    }
+                }
+            }
+        }
+
+        $products = Product::where(['is_active' => 1, 'category_id' => $ids])->get();
+
+        return view('shop.list-products',[
+            'category' => $category,
+            'products' => $products
+        ]);
     }
 
     // Trang Chi tiết Sản phẩm
-    public function detailProduct()
+    public function detailProduct($slug)
     {
-        return view('shop.detail-product');
+        $product = Product::where(['slug' => $slug, 'is_active' => 1])->firstOrFail();
+
+
+        // lấy ra những sản phẩm liên quan
+        // 1. lấy những sản phẩm cùng danh mục
+        // 2. loại trừ cái đang xem
+
+        // step 2 : lấy list 10 SP liên quan
+        $relatedProducts = Product::where([ ['is_active' , '=', 1],
+                                            ['category_id', '=' , $product->category_id ],
+                                            ['id', '<>' , $product->id]
+                                        ])->orderBy('id', 'desc')
+                                         ->take(10)
+                                         ->get();
+
+        return view('shop.detail-product', [
+            'product' => $product,
+            'relatedProducts' => $relatedProducts
+        ]);
     }
 
     // Tranh danh sách tin tức
     public function listArticles()
     {
-        return view('shop.list-articles');
+        $articles = Article::where(['is_active' => 1 ])->get();
+
+        return view('shop.list-articles',[
+                "articles" => $articles
+            ]);
     }
 
     // Trang chi tiết tin tức
-    public function detailArticle()
+    public function detailArticle($slug)
     {
-        return view('shop.detail-article');
+        $article = Article::where(['slug' => $slug, 'is_active' => 1])->firstOrFail();
+
+        return view('shop.detail-article',
+        [
+            'article' => $article
+        ]
+        );
     }
 
     // thêm dữ liệu khách hàng liên hệ vào bảng contact

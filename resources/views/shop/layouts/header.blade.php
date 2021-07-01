@@ -196,7 +196,7 @@
                                 @foreach($categories as $category)
                                     @if($category->parent_id == 0)
                                         <li>
-                                            <a href="">{{ $category->name }}</a>
+                                            <a href="{{ route('shop.listProducts',['slug' => $category->slug]) }}">{{ $category->name }}</a>
                                             <!-- DRODOWN-MEGA-MENU START -->
 
                                             <div class="drodown-mega-menu">
@@ -204,7 +204,7 @@
                                                     <div class="mega-menu-list">
                                                         @foreach($categories as $key => $child)
                                                             @if($child->parent_id != 0 && $child->parent_id == $category->id  && ($key%2) == 1)
-                                                                <a class="mega-menu-title" href="">
+                                                                <a class="mega-menu-title" href="{{ route('shop.listProducts',['slug' => $child->slug]) }}">
                                                                    {{ $child->name }}</a>
                                                             @endif
                                                         @endforeach
@@ -214,7 +214,7 @@
                                                     <div class="mega-menu-list">
                                                         @foreach($categories as $key => $child)
                                                             @if($category->id == $child->parent_id && ($key%2) == 0)
-                                                                <a class="mega-menu-title" href="">
+                                                                <a class="mega-menu-title" href="{{ route('shop.listProducts',['slug' => $child->slug]) }}">
                                                                    {{ $child->name }}
                                                                 </a>
                                                             @endif
@@ -227,6 +227,7 @@
                                     @endif
                                 @endforeach
                             @endif
+                            <li><a href="{{ route('shop.listArticles') }}">Tin Tức</a></li>
                             <li><a href="{{ route('shop.contact') }}">Liên hệ</a></li>
                         </ul>
                     </nav>

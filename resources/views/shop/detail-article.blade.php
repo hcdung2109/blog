@@ -1,5 +1,8 @@
 @extends('shop.layouts.main')
 
 @section('content')
-    <h1>trang chi tiet tin tuc</h1>
+    <br>
+    <h2>{{ $article->title }}</h2>
+    <p><i class="glyphicon glyphicon-calendar"></i> {{ $article->updated_at }}</p>
+    {!! $article->description !!}
 @endsection

@@ -61,7 +61,7 @@
                                 <div class="item">
                                 <div class="single-product-item">
                                     <div class="product-image">
-                                        <a href="#"><img src="{{ asset($product->image) }}" alt="product-image" /></a>
+                                        <a href="{{ route('shop.detailProduct',['slug' => $product->slug]) }}"><img src="{{ asset($product->image) }}" alt="product-image" /></a>
                                         @if($product->is_hot == 1)
                                             <a href="#" class="new-mark-box">Hot</a>
                                         @endif
