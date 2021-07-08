@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class CartController extends Controller
+class CartController extends GeneralController
 {
     // Trang danh sach san pham dat hang
     public function index()

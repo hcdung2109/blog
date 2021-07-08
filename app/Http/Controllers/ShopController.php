@@ -9,6 +9,7 @@ use App\Contact;
 use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
+use Cart;
 
 class ShopController extends Controller
 {
@@ -184,5 +185,40 @@ class ShopController extends Controller
 
         // chuyển về trang chủ
         return redirect('/');
+    }
+
+    // Thêm sản phẩm vào giỏ hàng
+    public function addToCart($id)
+    {
+        $product = Product::findOrFail($id);
+
+        // thông tin sẽ lưu vào giỏ
+
+        // gọi đến thư viện thêm sản phẩm vào giỏ hàng
+        Cart::add(
+            ['id' => $product->id, 'name' => $product->name, 'qty' => 1, 'price' => $product->sale,'tax' => 0, 'priceTax' => 0, 'options' => ['tax' => 0 , 'priceTax' => 0, 'image' => $product->image]]
+        );
+
+        //session(['totalItem' => Cart::count()]);
+
+        // chuyển về trang danh sách sản phảm trong giỏ hàng
+        return redirect()->route('shop.cart');
+    }
+
+    // Danh sách đặt hàng - giỏ hàng
+    public function cart()
+    {
+        // lấy dữ liệu = tất cả sản phẩm trong giỏ hàng
+        // b1. lấy toàn bộ sản phẩm đã lưu trong giỏ
+        $listProducts = Cart::content();
+
+        // lấy tổng giá của đơn hàng
+        $totalPrice = Cart::subtotal(0,",",".");
+
+        return view('shop.cart.index', [
+            'listProducts' => $listProducts,
+            'totalPrice' => $totalPrice
+        ]);
+
     }
 }

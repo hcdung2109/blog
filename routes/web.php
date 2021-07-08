@@ -30,7 +30,10 @@ Route::get('/tin-tuc', 'ShopController@listArticles')->name('shop.listArticles')
 // Trang chi tiet tin tuc
 Route::get('/chi-tiet-tin-tuc/{slug}', 'ShopController@detailArticle')->name('shop.detailArticle');
 
-Route::get('/dat-hang', 'CartController@index');
+// Thêm sản phẩm vào giỏ hàng
+Route::get('/dat-hang/{id}', 'ShopController@addToCart')->name('shop.addToCart');
+// Màn hình danh sách sản phẩm trong giỏ
+Route::get('/gio-hang', 'ShopController@cart')->name('shop.cart');
 
 
 Route::get('/admin/login', 'LoginController@index')->name('admin.login');

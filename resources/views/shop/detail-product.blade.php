@@ -158,7 +158,7 @@
                             <a class="color-blue" href="#"><span></span></a>
                         </div>
                         <div class="single-product-add-cart">
-                            <a class="add-cart-text" title="Add to cart" href="#">Add to cart</a>
+                            <a class="add-cart-text" title="Mua Ngay" href="{{ route('shop.addToCart', ['id' => $product->id]) }}">Mua Ngay</a>
                         </div>
                     </div>
                 </div>
