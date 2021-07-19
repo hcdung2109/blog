@@ -31,10 +31,21 @@ Route::get('/tin-tuc', 'ShopController@listArticles')->name('shop.listArticles')
 Route::get('/chi-tiet-tin-tuc/{slug}', 'ShopController@detailArticle')->name('shop.detailArticle');
 
 // Thêm sản phẩm vào giỏ hàng
-Route::get('/dat-hang/{id}', 'ShopController@addToCart')->name('shop.addToCart');
+Route::get('/them-san-pham-vao-gio/{id}', 'ShopController@addToCart')->name('shop.addToCart');
 // Màn hình danh sách sản phẩm trong giỏ
 Route::get('/gio-hang', 'ShopController@cart')->name('shop.cart');
+// nút hủy đơn hàng
+Route::get('/huy-don-hang', 'ShopController@cancelCart')->name('shop.cancelCart');
 
+Route::get('/xoa-san-pham-trong-gio-hang/{rowId}', 'ShopController@removeProductToCart')->name('shop.removeProductToCart');
+
+Route::get('/cap-nhat-so-luong/{rowId}/{qty}', 'ShopController@updateCart')->name('shop.updateCart');
+
+Route::get('/dat-hang', 'ShopController@order')->name('shop.order');
+
+Route::post('/dat-hang', 'ShopController@postOrder')->name('shop.postOrder');
+
+Route::get('/dat-hang-thanh-cong', 'ShopController@orderSuccess')->name('shop.orderSuccess');
 
 Route::get('/admin/login', 'LoginController@index')->name('admin.login');
 Route::post('/admin/postLogin', 'LoginController@postLogin')->name('admin.postLogin');

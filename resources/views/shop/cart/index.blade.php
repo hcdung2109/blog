@@ -5,21 +5,22 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <!-- BSTORE-BREADCRUMB START -->
             <div class="bstore-breadcrumb">
-                <a href="index.html">HOMe</a>
+                <a href="index.html">Trang Chủ</a>
                 <span><i class="fa fa-caret-right	"></i></span>
-                <span>Your shopping cart</span>
+                <span>Giỏ Hàng</span>
             </div>
             <!-- BSTORE-BREADCRUMB END -->
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <!-- SHOPPING-CART SUMMARY START -->
-            <h2 class="page-title">Danh Sách Sản Phẩm Trong Gio Hàng</h2>
-            <!-- SHOPPING-CART SUMMARY END -->
-        </div>
+        @if(count($listProducts))
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <!-- SHOPPING-CART SUMMARY START -->
+                <h2 class="page-title">Danh Sách Sản Phẩm Trong Gio Hàng</h2>
+                <!-- SHOPPING-CART SUMMARY END -->
+            </div>
 
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <!-- SHOPING-CART-MENU START -->
             <div class="table-responsive">
                 <!-- TABLE START -->
@@ -56,10 +57,11 @@
                                 <div class="cart-plus-minus-button">
                                     <input class="cart-plus-minus" type="text" name="qtybutton" value="{{ $product->qty }}">
                                 </div>
+                                <button data-id="{{ $product->rowId }}" type="button" class="btn btn-link btnUpdateQty" >Cập nhật</button>
                             </td>
                             <td class="cart-delete text-center">
                                 <span>
-                                    <a href="#" class="cart_quantity_delete" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                    <a href="{{ route('shop.removeProductToCart',['rowId' => $product->rowId ]) }}" class="cart_quantity_delete" title="Delete"><i class="fa fa-trash-o"></i></a>
                                 </span>
                             </td>
                             <td class="cart-total">
@@ -84,16 +86,41 @@
                 <!-- TABLE END -->
             </div>
             <!-- CART TABLE_BLOCK END -->
-        </div>
+            </div>
 
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <!-- RETURNE-CONTINUE-SHOP START -->
             <div class="returne-continue-shop">
-                <a href="checkout-signin.html" class="procedtocheckout pull-left" style="background-color: black; color: white">Hủy Đơn Hàng</a>
+                <a href="{{ route('shop.cancelCart') }}" class="procedtocheckout pull-left" style="background-color: black; color: white">Hủy Đơn Hàng</a>
                 <a href="index.html" class="continueshoping"><i class="fa fa-chevron-left"></i>Tiếp tục mua hàng</a>
-                <a href="checkout-signin.html" class="procedtocheckout">Tiến hành đặt hàng<i class="fa fa-chevron-right"></i></a>
+                <a href="{{ route('shop.order') }}" class="procedtocheckout">Tiến hành đặt hàng<i class="fa fa-chevron-right"></i></a>
             </div>
             <!-- RETURNE-CONTINUE-SHOP END -->
-        </div>
+            </div>
+        @else
+            <h3 class="text-center">Không có sản phẩm trong giỏ hàng</h3>
+        @endif
     </div>
+@endsection
+
+@section('my_js')
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            // đính kèm token vào mỗi request ajax
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // suAbidEneUPjfI5mHvWdFbSQ1PsM4OYSm73vF7kZ
+                }
+            });
+
+            $('.btnUpdateQty').click(function () {
+
+                var qty = $(this).closest('.cart_quantity').find('.cart-plus-minus').val();
+                var rowId = $(this).attr('data-id');  // attr : lấy giá trị của thuộc tính của thẻ HTML
+
+                window.location.href = '/cap-nhat-so-luong/'+rowId+'/'+qty;
+            });
+        });
+    </script>
 @endsection

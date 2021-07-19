@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Banner;
+use App\Order;
+use App\OrderDetail;
+use App\OrderProduct;
 use App\Setting;
 use App\Contact;
 use App\Category;
@@ -196,7 +199,7 @@ class ShopController extends Controller
 
         // gọi đến thư viện thêm sản phẩm vào giỏ hàng
         Cart::add(
-            ['id' => $product->id, 'name' => $product->name, 'qty' => 1, 'price' => $product->sale,'tax' => 0, 'priceTax' => 0, 'options' => ['tax' => 0 , 'priceTax' => 0, 'image' => $product->image]]
+            ['id' => $product->id, 'name' => $product->name, 'qty' => 1, 'price' => $product->sale,'options' => ['image' => $product->image]]
         );
 
         //session(['totalItem' => Cart::count()]);
@@ -217,8 +220,101 @@ class ShopController extends Controller
 
         return view('shop.cart.index', [
             'listProducts' => $listProducts,
-            'totalPrice' => $totalPrice
+            'totalPrice' => $totalPrice // giá x số lượng
         ]);
 
+    }
+
+    // hủy đơn hàng
+    public function cancelCart()
+    {
+        Cart::destroy();
+
+        return redirect('/');
+    }
+
+    // Xóa sản phẩm trong giỏ
+    public function removeProductToCart($rowId)
+    {
+        Cart::remove($rowId);
+
+        return redirect()->route('shop.cart');
+    }
+
+    public function updateCart($rowId, $qty)
+    {
+        // cập nhật số lượng song => về trang giỏ hàng
+        Cart::update($rowId, $qty);
+
+        return redirect()->route('shop.cart');
+    }
+
+    // Tiến hành đặt hàng
+    // Lưu được thông sản phẩm đã đặt hàng vào trong CSDL
+    public function order()
+    {
+        return view('shop.cart.order');
+    }
+
+    // xử lý lưu dữ liệu vào trong database
+    public function postOrder(Request $request)
+    {
+        $request->validate([
+            'fullname' => 'required|max:255',
+            'phone' => 'required',
+            'email' => 'required|email',
+            'address' => 'required',
+        ]);
+
+        // Lưu vào bảng đơn đặt hàng - orders
+        $order = new Order();
+        $order->fullname = $request->input('fullname');
+        $order->phone = $request->input('phone');
+        $order->email = $request->input('email');
+        $order->address = $request->input('address');
+        $order->note = $request->input('note');
+
+        // lấy tổng giá của đơn hàng
+        $totalPrice = Cart::subtotal(0,",",'');
+        $order->total = $totalPrice; // tổng giá
+        $order->order_status_id = 1; // 1 = mới , 2 = đang xử lý, 3= hoàn thành, 4 = hủy
+        //$order->save();
+
+
+        if ($order->save()) {
+            // xử lý lưu chi tiết
+            $id_order = $order->id;
+
+            // lấy toàn bộ sản phẩm đã lưu trong giỏ
+            $listProducts = Cart::content();
+
+            foreach ($listProducts as $product)
+            {
+                //dd($product);
+                $_detail = new OrderProduct();
+                $_detail->order_id = $id_order;
+                $_detail->name = $product->name;
+                $_detail->image = $product->options->image;
+                $_detail->product_id = $product->id;
+                $_detail->qty = $product->qty;
+                $_detail->price = $product->price;
+                $_detail->save();
+
+                // Giam số lượng trong kho
+            }
+
+            // Xóa thông tin giỏ hàng Hiện tại
+            Cart::destroy();
+
+            // chuyển về trang thông báo đặt hàng thành công
+            return redirect()->route('shop.orderSuccess');
+        }
+
+    }
+
+    // trang thông báo đặt hàng thành công
+    public function orderSuccess()
+    {
+        return view('shop.cart.orderSuccess');
     }
 }
