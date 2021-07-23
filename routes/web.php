@@ -47,6 +47,8 @@ Route::post('/dat-hang', 'ShopController@postOrder')->name('shop.postOrder');
 
 Route::get('/dat-hang-thanh-cong', 'ShopController@orderSuccess')->name('shop.orderSuccess');
 
+Route::get('/tim-kiem', 'ShopController@search')->name('shop.search');
+
 Route::get('/admin/login', 'LoginController@index')->name('admin.login');
 Route::post('/admin/postLogin', 'LoginController@postLogin')->name('admin.postLogin');
 Route::get('/admin/logout', 'LoginController@logout')->name('admin.logout');
@@ -59,6 +61,7 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => 'checkLogin'
     Route::resource('product', 'ProductController');
     Route::resource('user', 'UserController');
     Route::resource('setting', 'SettingController');
+    Route::resource('order', 'OrderController');
 });
 
 
